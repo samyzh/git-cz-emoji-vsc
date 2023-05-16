@@ -1,0 +1,86 @@
+{
+  "name": "git-cz-emoji-vsc",
+  "displayName": "Git CZ Emoji",
+  "description": "Automatically generate git commit message with prefix",
+  "version": "0.1.2",
+  "engines": {
+    "vscode": "^1.40.0"
+  },
+  "author": {
+    "name": "samyzh",
+    "email": "yessz@foxmail.com"
+  },
+  "categories": [
+    "Other"
+  ],
+  "publisher": "yessz",
+  "license": "MIT",
+  "homepage": "https://github.com/samyzh/git-cz-emoji-vsc/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/samyzh/git-cz-emoji-vsc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samyzh/git-cz-emoji-vsc"
+  },
+  "keywords": [
+    "git",
+    "cz",
+    "emoji",
+    "lint"
+  ],
+  "icon": "static/logo.png",
+  "activationEvents": [
+    "onCommand:extension.gitEmoji",
+    "onCommand:extension.switching"
+  ],
+  "main": "./lib/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.gitEmoji",
+        "title": "Git CZ: generate prefix msg",
+        "icon": {
+          "dark": "static/icon.svg",
+          "light": "static/icon_light.svg"
+        }
+      },
+      {
+        "command": "extension.switching",
+        "title": "Git CZ: switch prefix mode"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "when": "scmProvider == git",
+          "command": "extension.gitEmoji",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "pkg": "vsce package",
+    "pub": "vsce publish",
+    "vscode:prepublish2": "npm run c",
+    "c": "tsc -p ./",
+    "w": "tsc -watch -p ./",
+    "pretest": "npm run c && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./lib/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.40.0",
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^12.11.7",
+    "eslint": "^7.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.1.3",
+    "typescript": "^4.1.2",
+    "vscode-test": "^1.4.1"
+  }
+}
